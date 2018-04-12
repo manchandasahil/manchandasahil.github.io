@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #808000;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+
+  left: 43%;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+</head>
+<body background="bg.jpg">
+<h1><center>VAST Challenge 2017 MC2</center></h1>
+
+ <h3><center>Daily Air Sampling Analysis</center></h3>
+<p><center>Date: <input type="text" id="datepicker"></center></p>
+<!-- <button id="go">Go</button> -->
+
+<h3><center>Monthly Air Sampling Analysis</center></h3>
+
+<button class="button" id="location"><span>Location chart </span></button>
+
+<button class="button" id="Pollution"><span>Pollution Trends </span></button>
+
+<button class="button" id="sensortrends"><span>Sensor Trends </span></button>
+
+
+
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+    $("#datepicker").on("change",function(){
+        var selected = $(this).val();
+        var day = selected.split('/')[1]
+        console.log(day)
+        var htm = day.substring(1) + '.html'
+        if(day>9){
+          htm = day + '.html'
+        }
+        window.open(htm)
+    });
+});
+  $("#Pollution").click(function(){
+    window.open("trends.html");
+  });
+  $("#sensortrends").click(function(){
+    window.open("sensor_trend.html");
+  });
+  $("#location").click(function(){
+    window.open("location.html");
+  });
+
+
+</script>
+ 
+</body>
+</html>
